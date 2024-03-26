@@ -1,8 +1,9 @@
 {
-  "name": "nextarter-chakra",
+  "name": "erc-404",
   "version": "0.1.0",
   "private": true,
-  "author": "sozonome",
+  "author": "",
+  "packageManager": "pnpm@8.14.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,8 +23,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@chakra-ui/anatomy": "^2.2.2",
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/styled-system": "^2.9.2",
+    "@chakra-ui/theme-tools": "^2.1.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "framer-motion": "^11.0.14",
