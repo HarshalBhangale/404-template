@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
-import Providers from '~/app/providers';
+import Providers from '~/app/[locale]/providers';
 import Layout from '~/lib/layout';
 
 type RootLayoutProps = {
   children: React.ReactNode;
+  params: { locale: string };
 };
 
 const APP_NAME = 'nextarter-chakra';
@@ -42,16 +45,23 @@ export const viewport: Viewport = {
   themeColor: '#FFFFFF',
 };
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: RootLayoutProps) {
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
-        <Providers>
-          <Layout>{children}</Layout>
-        </Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <Layout>{children}</Layout>
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}
